@@ -47,8 +47,7 @@ jobs:
         uses: NuGet/login@v1
         id: login
         with:
-          # nuget.org profile name (not email). Optional: store as secrets.NUGET_USER
-          user: usakgb
+          user: ${{ secrets.NUGET_USER }}
 
       - name: Push to NuGet.org
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
