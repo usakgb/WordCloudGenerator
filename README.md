@@ -105,6 +105,50 @@ var settings = new WordCloudSettings(600, 400, 10, 36, new MyMeasurer());
 
 Accurate measurement is important. Placement quality depends on how closely the measurer matches the text you render.
 
+### WinUI example
+
+Measure with a WinUI `TextBlock`, then place controls on a `Canvas`:
+
+```csharp
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System.Drawing;
+using Windows.Foundation;
+using WordCloudGenerator;
+
+var entries = new List<WordEntry>
+{
+    new("design", 42),
+    new("code", 28),
+    new("test", 15),
+};
+
+var settings = new WordCloudSettings(600, 400, 10, 35, (text, fontSize) =>
+{
+    var textBlock = new TextBlock { Text = text, FontSize = fontSize };
+    textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+    return new Rectangle(0, 0, (int)textBlock.DesiredSize.Width, (int)textBlock.DesiredSize.Height);
+});
+
+var result = new WordCloud(settings).Generate(entries);
+
+wordCloudCanvas.Children.Clear();
+foreach (var word in result.Placed)
+{
+    var element = new TextBlock
+    {
+        Text = word.Entry.Word,
+        FontSize = word.FontSize,
+    };
+
+    Canvas.SetLeft(element, word.Location.X);
+    Canvas.SetTop(element, word.Location.Y);
+    wordCloudCanvas.Children.Add(element);
+}
+```
+
+Use the same font family, weight, and style in the measurer and in the rendered control so layout matches what you draw.
+
 ## Overflow behavior
 
 When the canvas runs out of space, `Generate` returns a `WordCloudResult` with:
