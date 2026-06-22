@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WordCloudGenerator.csproj" />
+  <Project Path="WordCloudGenerator.Tests\WordCloudGenerator.Tests.csproj" />
+</Solution>

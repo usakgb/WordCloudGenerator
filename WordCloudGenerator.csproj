@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>WordCloudGenerator</RootNamespace>
+    <AssemblyName>WordCloudGenerator</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <PackageId>WordCloudGenerator</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>usakgb</Authors>
+    <Description>Lightweight .NET word cloud layout library. Spiral placement, logarithmic font sizing, and quadtree collision detection. Based on KnowledgePicker.WordCloud.</Description>
+    <PackageTags>wordcloud;word-cloud;tag-cloud;layout;wordle</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/usakgb/WordCloudGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/usakgb/WordCloudGenerator.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="WordCloudGenerator.Tests\**" />
+    <None Remove="WordCloudGenerator.Tests\**" />
+    <EmbeddedResource Remove="WordCloudGenerator.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

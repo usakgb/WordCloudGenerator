@@ -1,0 +1,54 @@
+# Publishes WordCloudGenerator to NuGet.org using Trusted Publishing (OIDC).
+#
+# NuGet.org policy setup (https://www.nuget.org/account/trustedpublishing):
+#   Repository owner: usakgb
+#   Repository:       WordCloudGenerator
+#   Workflow file:    publish.yml
+#
+# Release: bump <Version> in WordCloudGenerator.csproj, then:
+#   git tag v1.0.0
+#   git push origin master
+#   git push origin v1.0.0
+
+name: Publish NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Test
+        run: dotnet test WordCloudGenerator.Tests/WordCloudGenerator.Tests.csproj -c Release --no-restore false
+
+      - name: Pack
+        run: dotnet pack WordCloudGenerator.csproj -c Release -o ./nupkg
+
+      - name: NuGet login (Trusted Publishing)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          # nuget.org profile name (not email). Optional: store as secrets.NUGET_USER
+          user: usakgb
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
