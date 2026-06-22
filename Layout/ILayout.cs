@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using WordCloudGenerator.Sizer;
 
 namespace WordCloudGenerator.Layout;

@@ -1,6 +1,6 @@
 # WordCloudGenerator
 
-A lightweight .NET library for arranging [word clouds](https://en.wikipedia.org/wiki/Tag_cloud) (tag clouds). It computes word positions and font sizes using a spiral layout and quadtree collision detection, leaving rendering to your application.
+A lightweight, cross-platform .NET library for arranging [word clouds](https://en.wikipedia.org/wiki/Tag_cloud) (tag clouds). It computes word positions and font sizes using a spiral layout and quadtree collision detection, leaving rendering to your application.
 
 Based on [KnowledgePicker.WordCloud](https://github.com/knowledgepicker/word-cloud), with a simplified layout-only API.
 
@@ -11,13 +11,9 @@ Based on [KnowledgePicker.WordCloud](https://github.com/knowledgepicker/word-clo
 - **Spiral layout** — Wordle-style placement from the center outward
 - **Logarithmic font sizing** — `LogSizer` scales fonts by word frequency
 - **Quadtree collision detection** — fast overlap checks while placing words
+- **Cross-platform** — .NET Standard 2.1 with no `System.Drawing` or other platform-specific dependencies
 - **Pluggable measurement** — bring your own text measurer for WPF, WinUI, SkiaSharp, SVG, etc.
 - **Layout only** — no rendering engine bundled; use the output with any UI framework
-
-## Requirements
-
-- .NET Standard 2.1+
-- [System.Drawing.Common](https://www.nuget.org/packages/System.Drawing.Common) (included)
 
 ## Installation
 
@@ -32,13 +28,12 @@ Or in Visual Studio: **Project → Manage NuGet Packages → Browse → WordClou
 Package: [nuget.org/packages/WordCloudGenerator](https://www.nuget.org/packages/WordCloudGenerator)
 
 ```xml
-<PackageReference Include="WordCloudGenerator" Version="1.0.0" />
+<PackageReference Include="WordCloudGenerator" Version="2.0.0" />
 ```
 
 ## Quick start
 
 ```csharp
-using System.Drawing;
 using WordCloudGenerator;
 
 var entries = new List<WordEntry>
@@ -112,9 +107,9 @@ Measure with a WinUI `TextBlock`, then place controls on a `Canvas`:
 ```csharp
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System.Drawing;
 using Windows.Foundation;
 using WordCloudGenerator;
+using Windows.Foundation.Size;
 
 var entries = new List<WordEntry>
 {

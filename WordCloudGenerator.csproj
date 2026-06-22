@@ -8,9 +8,9 @@
     <LangVersion>latest</LangVersion>
 
     <PackageId>WordCloudGenerator</PackageId>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <Authors>usakgb</Authors>
-    <Description>Lightweight .NET word cloud layout library. Spiral placement, logarithmic font sizing, and quadtree collision detection. Based on KnowledgePicker.WordCloud.</Description>
+    <Description>Cross-platform .NET word cloud layout library. Spiral placement, logarithmic font sizing, and quadtree collision detection. Based on KnowledgePicker.WordCloud.</Description>
     <PackageTags>wordcloud;word-cloud;tag-cloud;layout;wordle</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -19,10 +19,6 @@
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="WordCloudGenerator.Tests\**" />

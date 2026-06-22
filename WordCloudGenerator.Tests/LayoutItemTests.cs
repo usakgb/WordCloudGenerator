@@ -1,5 +1,3 @@
-using System.Drawing;
-
 namespace WordCloudGenerator.Tests;
 
 public class LayoutItemTests

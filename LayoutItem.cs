@@ -1,5 +1,3 @@
-using System.Drawing;
-
 namespace WordCloudGenerator;
 
 public class LayoutItem
