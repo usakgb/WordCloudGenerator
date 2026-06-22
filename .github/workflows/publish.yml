@@ -1,11 +1,5 @@
 # Publishes WordCloudGenerator to NuGet.org using Trusted Publishing (OIDC).
 #
-# NuGet.org policy setup (https://www.nuget.org/account/trustedpublishing):
-#   Repository owner: usakgb
-#   Repository:       WordCloudGenerator
-#   Workflow file:    publish.yml
-#   Policy creator:   gking  (use creator username in NuGet/login, not org owner)
-#
 # Release: bump <Version> in WordCloudGenerator.csproj, then:
 #   git tag v1.0.0
 #   git push origin master
